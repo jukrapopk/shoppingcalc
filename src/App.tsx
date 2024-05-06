@@ -57,10 +57,10 @@ function App() {
 
   return (
     <Center p="xl">
-      <Card miw={400}>
+      <Card>
         <Stack>
           <Text fw="bold">
-            Shopping Calculator
+            Shopping Calculator 🛒
           </Text>
           <Table striped withColumnBorders withTableBorder>
             <Table.Thead>
