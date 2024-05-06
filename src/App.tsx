@@ -27,13 +27,17 @@ function App() {
 
   function onChange(index: number, column: 'price' | 'count', value: number | undefined) {
     setItems(items => items.map((item, i) => {
+      const price = column === 'price' ? value : item.price;
+      const count = column === 'count' ? value : item.count;
+      const per = (price && count) ? price / count : undefined
       if (i === index) {
         return {
-          ...item,
-          [column]: value
+          price: price,
+          count: count,
+          per: per,
         }
       } else {
-        return item
+        return { ...item }
       }
     }))
   }
@@ -42,14 +46,14 @@ function App() {
     return items.map((item, i) => (
       <Table.Tr key={i}>
         <Table.Td>
-          <NumberInput inputMode="decimal" variant="filled" value={item.price} onChange={(value) => onChange(i, 'price', value ? Number(value) : undefined)} size="md" />
+          <NumberInput inputMode="decimal" variant="filled" value={item.price ?? ''} onChange={(value) => onChange(i, 'price', value ? Number(value) : undefined)} size="md" />
         </Table.Td>
         <Table.Td>
-          <NumberInput inputMode="decimal" variant="filled" value={item.count} onChange={(value) => onChange(i, 'count', value ? Number(value) : undefined)} size="md" />
+          <NumberInput inputMode="decimal" variant="filled" value={item.count ?? ''} onChange={(value) => onChange(i, 'count', value ? Number(value) : undefined)} size="md" />
         </Table.Td>
         <Table.Td>
           <Text>
-            {(Number.isNaN((item.price ?? 0) / (item.count ?? 0)) ? 0 : ((item.price ?? 0) / (item.count ?? 0))).toFixed(2)}
+            {item.per ? Number(item.per).toFixed(2) : '-'}
           </Text>
         </Table.Td>
       </Table.Tr>
