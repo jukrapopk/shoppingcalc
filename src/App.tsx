@@ -7,21 +7,22 @@ import { useMemo, useState } from 'react';
 interface Item {
   price: number | undefined,
   count: number | undefined,
+  per: number | undefined,
   // priceLabel: 'THB',
   // countLabel: 'Unit'
 }
 
+const defaultItem: Item = { price: undefined, count: undefined, per: undefined }
+
 function App() {
-  const [items, setItems] = useState<Item[]>([
-    { price: undefined, count: undefined }
-  ])
+  const [items, setItems] = useState<Item[]>([{ ...defaultItem }])
 
   function add() {
-    setItems(items => [...items, { price: undefined, count: undefined }])
+    setItems(items => [...items, { ...defaultItem }])
   }
 
   function clear() {
-    setItems([{ price: undefined, count: undefined }])
+    setItems([{ ...defaultItem }])
   }
 
   function onChange(index: number, column: 'price' | 'count', value: number | undefined) {
