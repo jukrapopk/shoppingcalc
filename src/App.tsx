@@ -46,7 +46,7 @@ function App() {
         <Table.Td>
           <NumberInput variant="filled" value={item.count} onChange={(value) => onChange(i, 'count', Number(value))} />
         </Table.Td>
-        <Table.Td>{(item.price / item.count).toFixed(2)}</Table.Td>
+        <Table.Td>{(Number.isNaN(item.price / item.count) ? 0 : (item.price / item.count)).toFixed(2)}</Table.Td>
       </Table.Tr>
     ))
   }, [items])
@@ -63,7 +63,7 @@ function App() {
               <Table.Tr>
                 <Table.Th>Price</Table.Th>
                 <Table.Th>Count</Table.Th>
-                <Table.Th miw={200}>Per</Table.Th>
+                <Table.Th miw="6em">Per</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
