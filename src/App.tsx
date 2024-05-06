@@ -94,9 +94,9 @@ function App() {
                   <Group justify="space-between" wrap="nowrap">
                     <Text size="sm" fw="bold">
                       {inverted ?
-                        "Unit / Price"
+                        "Unit / Price"
                         :
-                        "Price / Unit"
+                        "Price / Unit"
                       }
                     </Text>
                     <Group gap={2}>
