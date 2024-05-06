@@ -1,8 +1,6 @@
 import { Button, Card, Center, Group, NumberInput, Stack, Table, Text } from '@mantine/core';
 import { useMemo, useState } from 'react';
-
-// const CORRECT_BG_COLOR = "#00ff0012"
-// const WRONG_BG_COLOR = "#ff000012"
+import { getMaxIndex, getMinIndex } from './helper';
 
 interface Item {
   price: number | undefined,
@@ -25,6 +23,25 @@ function App() {
     setItems([{ ...defaultItem }])
   }
 
+  const minIndex = useMemo(() => {
+    return getMinIndex(items.map(item => item.per ?? Infinity))
+  }, [items])
+
+
+  const maxIndex = useMemo(() => {
+    return getMaxIndex(items.map(item => item.per ?? 0))
+  }, [items])
+
+  const shouldShowIndicator = useMemo(() => {
+    let completeEntry = 0;
+    items.forEach(item => {
+      if (item.per !== undefined) {
+        completeEntry++
+      }
+    })
+    return completeEntry > 1
+  }, [items])
+
   function onChange(index: number, column: 'price' | 'count', value: number | undefined) {
     setItems(items => items.map((item, i) => {
       const price = column === 'price' ? value : item.price;
@@ -44,7 +61,7 @@ function App() {
 
   const rows = useMemo(() => {
     return items.map((item, i) => (
-      <Table.Tr key={i}>
+      <Table.Tr key={i} bg={shouldShowIndicator ? (minIndex === i ? "green.3" : maxIndex === i ? "red.4" : "none") : "none"}>
         <Table.Td>
           <NumberInput inputMode="decimal" variant="filled" value={item.price ?? ''} onChange={(value) => onChange(i, 'price', value ? Number(value) : undefined)} size="md" />
         </Table.Td>
@@ -58,7 +75,7 @@ function App() {
         </Table.Td>
       </Table.Tr>
     ))
-  }, [items])
+  }, [items, minIndex, maxIndex, shouldShowIndicator])
 
   return (
     <Center p="md">
