@@ -41,10 +41,10 @@ function App() {
     return items.map((item, i) => (
       <Table.Tr key={i}>
         <Table.Td>
-          <NumberInput variant="filled" value={item.price} onChange={(value) => onChange(i, 'price', Number(value))} size="md" />
+          <NumberInput inputMode="decimal" variant="filled" value={item.price} onChange={(value) => onChange(i, 'price', Number(value))} size="md" />
         </Table.Td>
         <Table.Td>
-          <NumberInput variant="filled" value={item.count} onChange={(value) => onChange(i, 'count', Number(value))} size="md" />
+          <NumberInput inputMode="decimal" variant="filled" value={item.count} onChange={(value) => onChange(i, 'count', Number(value))} size="md" />
         </Table.Td>
         <Table.Td>
           <Text>
