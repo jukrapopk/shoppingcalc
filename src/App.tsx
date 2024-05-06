@@ -5,23 +5,23 @@ import { useMemo, useState } from 'react';
 // const WRONG_BG_COLOR = "#ff000012"
 
 interface Item {
-  price: number,
-  count: number,
+  price: number | undefined,
+  count: number | undefined,
   // priceLabel: 'THB',
   // countLabel: 'Unit'
 }
 
 function App() {
   const [items, setItems] = useState<Item[]>([
-    { price: 0, count: 0 }
+    { price: undefined, count: undefined }
   ])
 
   function add() {
-    setItems(items => [...items, { price: 0, count: 0 }])
+    setItems(items => [...items, { price: undefined, count: undefined }])
   }
 
   function clear() {
-    setItems([{ price: 0, count: 0 }])
+    setItems([{ price: undefined, count: undefined }])
   }
 
   function onChange(index: number, column: 'price' | 'count', value: number) {
@@ -48,7 +48,7 @@ function App() {
         </Table.Td>
         <Table.Td>
           <Text>
-            {(Number.isNaN(item.price / item.count) ? 0 : (item.price / item.count)).toFixed(2)}
+            {(Number.isNaN((item.price ?? 0) / (item.count ?? 0)) ? 0 : ((item.price ?? 0) / (item.count ?? 0))).toFixed(2)}
           </Text>
         </Table.Td>
       </Table.Tr>
@@ -66,8 +66,8 @@ function App() {
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>Price</Table.Th>
-                <Table.Th>Count</Table.Th>
-                <Table.Th miw="6em">Per</Table.Th>
+                <Table.Th>Amount</Table.Th>
+                <Table.Th miw="6em">Price / Unit</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
