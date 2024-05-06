@@ -1,4 +1,5 @@
 import { ActionIcon, Button, Card, Center, Group, NumberInput, Stack, Table, Text } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 import { IconArrowsDoubleSwNe } from '@tabler/icons-react';
 import { useMemo, useState } from 'react';
 import { getMaxIndex, getMinIndex } from './helper';
@@ -12,7 +13,7 @@ interface Item {
 const defaultItem: Item = { price: undefined, count: undefined, per: undefined }
 
 function App() {
-  const [items, setItems] = useState<Item[]>([{ ...defaultItem }])
+  const [items, setItems] = useLocalStorage<Item[]>({ key: 'items', defaultValue: [{ ...defaultItem }] })
 
   function add() {
     setItems(items => [...items, { ...defaultItem }])
