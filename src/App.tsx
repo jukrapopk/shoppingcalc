@@ -56,7 +56,7 @@ function App() {
   }, [items])
 
   return (
-    <Center p="xl">
+    <Center p="md">
       <Card>
         <Stack>
           <Text fw="bold">
