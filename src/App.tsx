@@ -1,7 +1,7 @@
 import { ActionIcon, Button, Card, Center, Group, NumberInput, Stack, Table, Text } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
 import { IconArrowsDoubleSwNe } from '@tabler/icons-react';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { getMaxIndex, getMinIndex } from './helper';
 
 interface Item {
@@ -59,7 +59,7 @@ function App() {
     }))
   }
 
-  const [inverted, setInverted] = useState(false);
+  const [inverted, setInverted] = useLocalStorage({ key: 'inverted', defaultValue: false });
 
   const rows = useMemo(() => {
     return items.map((item, i) => (
