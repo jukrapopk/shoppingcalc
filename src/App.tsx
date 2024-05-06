@@ -60,7 +60,7 @@ function App() {
       <Card>
         <Stack>
           <Text fw="bold">
-            Shopping Calculator 🛒
+            Shopping Calculator
           </Text>
           <Table striped withColumnBorders withTableBorder>
             <Table.Thead>
