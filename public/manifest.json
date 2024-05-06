@@ -5,7 +5,7 @@
     "scope": "/",
     "start_url": "/",
     "name": "Shopping Calculator",
-    "short_name": "shoppingcalc",
+    "short_name": "Shopping Calc",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
