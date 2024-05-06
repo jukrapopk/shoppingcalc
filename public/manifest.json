@@ -1,0 +1,27 @@
+{
+    "theme_color": "#f69435",
+    "background_color": "#ffaa52",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "Shopping Calculator",
+    "short_name": "shoppingcalc",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/masked-icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+          }
+    ]
+}
