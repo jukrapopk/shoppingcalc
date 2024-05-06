@@ -24,7 +24,7 @@ function App() {
     setItems([{ price: undefined, count: undefined }])
   }
 
-  function onChange(index: number, column: 'price' | 'count', value: number) {
+  function onChange(index: number, column: 'price' | 'count', value: number | undefined) {
     setItems(items => items.map((item, i) => {
       if (i === index) {
         return {
@@ -41,10 +41,10 @@ function App() {
     return items.map((item, i) => (
       <Table.Tr key={i}>
         <Table.Td>
-          <NumberInput inputMode="decimal" variant="filled" value={item.price} onChange={(value) => onChange(i, 'price', Number(value))} size="md" />
+          <NumberInput inputMode="decimal" variant="filled" value={item.price} onChange={(value) => onChange(i, 'price', value ? Number(value) : undefined)} size="md" />
         </Table.Td>
         <Table.Td>
-          <NumberInput inputMode="decimal" variant="filled" value={item.count} onChange={(value) => onChange(i, 'count', Number(value))} size="md" />
+          <NumberInput inputMode="decimal" variant="filled" value={item.count} onChange={(value) => onChange(i, 'count', value ? Number(value) : undefined)} size="md" />
         </Table.Td>
         <Table.Td>
           <Text>
