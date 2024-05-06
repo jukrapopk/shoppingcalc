@@ -41,12 +41,16 @@ function App() {
     return items.map((item, i) => (
       <Table.Tr key={i}>
         <Table.Td>
-          <NumberInput variant="filled" value={item.price} onChange={(value) => onChange(i, 'price', Number(value))} />
+          <NumberInput variant="filled" value={item.price} onChange={(value) => onChange(i, 'price', Number(value))} size="md" />
         </Table.Td>
         <Table.Td>
-          <NumberInput variant="filled" value={item.count} onChange={(value) => onChange(i, 'count', Number(value))} />
+          <NumberInput variant="filled" value={item.count} onChange={(value) => onChange(i, 'count', Number(value))} size="md" />
         </Table.Td>
-        <Table.Td>{(Number.isNaN(item.price / item.count) ? 0 : (item.price / item.count)).toFixed(2)}</Table.Td>
+        <Table.Td>
+          <Text>
+            {(Number.isNaN(item.price / item.count) ? 0 : (item.price / item.count)).toFixed(2)}
+          </Text>
+        </Table.Td>
       </Table.Tr>
     ))
   }, [items])
@@ -56,7 +60,7 @@ function App() {
       <Card miw={400}>
         <Stack>
           <Text fw="bold">
-            Per Gram Calculator
+            Shopping Calculator
           </Text>
           <Table striped withColumnBorders withTableBorder>
             <Table.Thead>
